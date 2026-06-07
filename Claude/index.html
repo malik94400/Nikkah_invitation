@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nikkah Invitation — Maha Malik & Shahzaib Malik, November 7th 2026" />
+  <title>Nikkah Invitation — Maha & Shahzaib</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Nunito:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Scroll Progress Bar -->
+<div id="scroll-progress" aria-hidden="true"></div>
+
+<!-- Loading Screen -->
+<div id="loading-screen" aria-label="Loading invitation">
+  <div class="loading-inner">
+    <div class="loading-floral">
+      <svg viewBox="0 0 120 120" class="loading-flower" aria-hidden="true">
+        <g transform="translate(60,60)">
+          <ellipse rx="6" ry="22" fill="#e8a0a0" opacity="0.9"/>
+          <ellipse rx="6" ry="22" fill="#e8a0a0" opacity="0.9" transform="rotate(45)"/>
+          <ellipse rx="6" ry="22" fill="#e8a0a0" opacity="0.9" transform="rotate(90)"/>
+          <ellipse rx="6" ry="22" fill="#e8a0a0" opacity="0.9" transform="rotate(135)"/>
+          <circle r="8" fill="#c97070"/>
+        </g>
+      </svg>
+    </div>
+    <p class="loading-text">Preparing your invitation…</p>
+    <div class="loading-dots"><span></span><span></span><span></span></div>
+  </div>
+</div>
+
+<!-- Floating Petals Canvas -->
+<canvas id="petals-canvas" aria-hidden="true"></canvas>
+
+<!-- Cursor Sparkle -->
+<div id="cursor-sparkle" aria-hidden="true"></div>
+
+<!-- Music Button -->
+<button id="music-btn" aria-label="Toggle background music" title="Toggle music">
+  <svg id="music-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <path d="M9 18V5l12-2v13"/>
+    <circle cx="6" cy="18" r="3"/>
+    <circle cx="18" cy="16" r="3"/>
+  </svg>
+  <span class="music-label">♪</span>
+</button>
+
+<!-- ============================================================
+     INVITATION CARD GATE
+============================================================ -->
+<section id="invitation-gate" aria-label="Tap to open invitation">
+  <div class="gate-bg">
+    <div class="sparkle-field" id="sparkle-field" aria-hidden="true"></div>
+  </div>
+  <p class="gate-you-are">— You Are Invited —</p>
+  <div id="invitation-card" role="button" tabindex="0" aria-label="Click to open your invitation">
+    <div class="card-front">
+      <div class="card-ornament top-left" aria-hidden="true">❧</div>
+      <div class="card-ornament top-right" aria-hidden="true">❧</div>
+      <div class="card-ornament bot-left" aria-hidden="true">❧</div>
+      <div class="card-ornament bot-right" aria-hidden="true">❧</div>
+      <div class="card-front-inner">
+        <p class="card-bismillah">بِسْمِ اللهِ</p>
+        <h2 class="card-front-names">Maha &amp; Shahzaib</h2>
+        <p class="card-front-date">Nikkah · 7 November 2026</p>
+        <p class="card-tap-hint">✦ Tap to open ✦</p>
+      </div>
+    </div>
+    <div class="card-back" aria-hidden="true">
+      <div class="card-back-pattern"></div>
+    </div>
+  </div>
+  <div id="confetti-container" aria-hidden="true"></div>
+</section>
+
+<!-- ============================================================
+     MAIN INVITATION CONTENT (hidden until card opened)
+============================================================ -->
+<main id="main-content" aria-label="Invitation content" hidden>
+
+  <!-- ── HERO ── -->
+  <section id="hero" class="section hero-section">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content reveal">
+      <p class="bismillah arabic" lang="ar">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْم</p>
+      <p class="hero-eyebrow shimmer-text">Nikkah Invitation</p>
+      <div class="couple-names">
+        <span class="bride-name">Maha Malik</span>
+        <span class="names-heart" aria-hidden="true">
+            <svg viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 33S2 22 2 11a9 9 0 0 1 18-1 9 9 0 0 1 18 1c0 11-18 22-18 22z" fill="#c97070"/>
+            </svg>
+          </span>
+        <span class="groom-name">Shahzaib Malik</span>
+      </div>
+      <p class="hero-subtext">Together with our families, we joyfully invite you to celebrate our Nikkah.</p>
+      <a href="#date" class="cta-btn" aria-label="Scroll to date section">View Details ↓</a>
+    </div>
+    <div class="hero-deco-left" aria-hidden="true"></div>
+    <div class="hero-deco-right" aria-hidden="true"></div>
+  </section>
+
+  <!-- ── DATE & COUNTDOWN ── -->
+  <section id="date" class="section date-section">
+    <div class="section-header reveal">
+      <span class="section-ornament" aria-hidden="true">✦</span>
+      <h2 class="section-title">The Blessed Day</h2>
+      <span class="section-ornament" aria-hidden="true">✦</span>
+    </div>
+    <div class="date-display reveal">
+      <div class="date-part">
+        <span class="date-num">Sunday</span>
+        <span class="date-label">Day</span>
+      </div>
+      <div class="date-divider" aria-hidden="true">·</div>
+      <div class="date-part">
+        <span class="date-num">November</span>
+        <span class="date-label">Month</span>
+      </div>
+      <div class="date-divider" aria-hidden="true">·</div>
+      <div class="date-part">
+        <span class="date-num">7<sup>th</sup></span>
+        <span class="date-label">Date</span>
+      </div>
+      <div class="date-divider" aria-hidden="true">·</div>
+      <div class="date-part">
+        <span class="date-num">2026</span>
+        <span class="date-label">Year</span>
+      </div>
+    </div>
+    <div class="countdown-wrapper reveal">
+      <p class="countdown-label">Counting Down To The Big Day</p>
+      <div class="countdown" id="countdown" role="timer" aria-live="polite">
+        <div class="cd-block"><span class="cd-num" id="cd-days">000</span><span class="cd-lbl">Days</span></div>
+        <div class="cd-sep" aria-hidden="true">:</div>
+        <div class="cd-block"><span class="cd-num" id="cd-hours">00</span><span class="cd-lbl">Hours</span></div>
+        <div class="cd-sep" aria-hidden="true">:</div>
+        <div class="cd-block"><span class="cd-num" id="cd-mins">00</span><span class="cd-lbl">Minutes</span></div>
+        <div class="cd-sep" aria-hidden="true">:</div>
+        <div class="cd-block"><span class="cd-num" id="cd-secs">00</span><span class="cd-lbl">Seconds</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LOVE STORY TIMELINE ── -->
+  <section id="story" class="section story-section">
+    <div class="section-header reveal">
+      <span class="section-ornament" aria-hidden="true">✦</span>
+      <h2 class="section-title">Our Story</h2>
+      <span class="section-ornament" aria-hidden="true">✦</span>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal-left">
+        <div class="timeline-icon" aria-hidden="true">🌸</div>
+        <div class="timeline-content glass-card">
+          <h3>A Beautiful Journey Began</h3>
+          <p>Two souls brought together by destiny and divine will, beginning a path meant to be walked side by side.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal-right">
+        <div class="timeline-icon" aria-hidden="true">💞</div>
+        <div class="timeline-content glass-card">
+          <h3>Two Hearts Became One</h3>
+          <p>In the quiet spaces between words and glances, a love grew — gentle, certain, and true.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal-left">
+        <div class="timeline-icon" aria-hidden="true">🤲</div>
+        <div class="timeline-content glass-card">
+          <h3>With Allah's Blessings</h3>
+          <p>Guided by faith and surrounded by the prayers of those we love most, this union is a gift from above.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal-right">
+        <div class="timeline-icon" aria-hidden="true">✨</div>
+        <div class="timeline-content glass-card">
+          <h3>A New Chapter Begins</h3>
+          <p>On the 7th of November 2026, a new story begins — written together, forever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EVENT DETAILS ── -->
+  <section id="event" class="section event-section">
+    <div class="section-header reveal">
+      <span class="section-ornament" aria-hidden="true">✦</span>
+      <h2 class="section-title">Event Details</h2>
+      <span class="section-ornament" aria-hidden="true">✦</span>
+    </div>
+    <div class="event-card glass-card reveal">
+      <div class="event-badge" aria-hidden="true">Nikkah Ceremony</div>
+      <div class="event-details-grid">
+        <div class="event-detail-item">
+          <span class="event-detail-icon" aria-hidden="true">📅</span>
+          <span class="event-detail-label">Date</span>
+          <span class="event-detail-value">7 November 2026</span>
+        </div>
+        <div class="event-detail-item">
+          <span class="event-detail-icon" aria-hidden="true">⏰</span>
+          <span class="event-detail-label">Time</span>
+          <span class="event-detail-value">To Be Announced</span>
+        </div>
+        <div class="event-detail-item">
+          <span class="event-detail-icon" aria-hidden="true">📍</span>
+          <span class="event-detail-label">Venue</span>
+          <span class="event-detail-value">Location To Be Announced</span>
+        </div>
+      </div>
+      <div class="map-placeholder" aria-label="Map coming soon">
+        <div class="map-animated-pin" aria-hidden="true">
+          <div class="pin-body"></div>
+          <div class="pin-pulse"></div>
+        </div>
+        <p class="map-coming">Location will be announced soon</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MESSAGE ── -->
+  <section id="message" class="section message-section">
+    <div class="section-header reveal">
+      <span class="section-ornament" aria-hidden="true">✦</span>
+      <h2 class="section-title">Our Invitation</h2>
+      <span class="section-ornament" aria-hidden="true">✦</span>
+    </div>
+    <div class="message-card glass-card reveal">
+      <p class="message-line" data-delay="0">In the name of Allah, the Most Gracious, the Most Merciful.</p>
+      <div class="message-divider" aria-hidden="true">❦</div>
+      <p class="message-line" data-delay="200">With gratitude in our hearts and blessings from our families,</p>
+      <p class="message-line" data-delay="400">we invite you to join us as we celebrate the Nikkah of</p>
+      <p class="message-line message-names" data-delay="600">Maha Malik &amp; Shahzaib Malik</p>
+      <p class="message-line" data-delay="800">Your presence and prayers will make this day even more special.</p>
+    </div>
+  </section>
+
+  <!-- ── GALLERY ── -->
+  <section id="gallery" class="section gallery-section">
+    <div class="section-header reveal">
+      <span class="section-ornament" aria-hidden="true">✦</span>
+      <h2 class="section-title">Gallery</h2>
+      <span class="section-ornament" aria-hidden="true">✦</span>
+    </div>
+    <p class="gallery-coming reveal">Photos coming soon…</p>
+    <div class="gallery-grid reveal" id="gallery-grid" aria-label="Photo gallery">
+      <!-- Placeholder tiles -->
+      <div class="gallery-item" tabindex="0" role="img" aria-label="Gallery placeholder 1">
+        <div class="gallery-placeholder g1"><span>🌸</span></div>
+      </div>
+      <div class="gallery-item tall" tabindex="0" role="img" aria-label="Gallery placeholder 2">
+        <div class="gallery-placeholder g2"><span>💐</span></div>
+      </div>
+      <div class="gallery-item" tabindex="0" role="img" aria-label="Gallery placeholder 3">
+        <div class="gallery-placeholder g3"><span>✨</span></div>
+      </div>
+      <div class="gallery-item wide" tabindex="0" role="img" aria-label="Gallery placeholder 4">
+        <div class="gallery-placeholder g4"><span>🌹</span></div>
+      </div>
+      <div class="gallery-item" tabindex="0" role="img" aria-label="Gallery placeholder 5">
+        <div class="gallery-placeholder g5"><span>🕌</span></div>
+      </div>
+      <div class="gallery-item tall" tabindex="0" role="img" aria-label="Gallery placeholder 6">
+        <div class="gallery-placeholder g6"><span>💍</span></div>
+      </div>
+    </div>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo lightbox" hidden>
+      <button class="lightbox-close" aria-label="Close lightbox">✕</button>
+      <div class="lightbox-inner" id="lightbox-inner"></div>
+    </div>
+  </section>
+
+  <!-- ── GUESTBOOK ── -->
+  <section id="guestbook" class="section guestbook-section">
+    <div class="section-header reveal">
+      <span class="section-ornament" aria-hidden="true">✦</span>
+      <h2 class="section-title">Guest Wishes</h2>
+      <span class="section-ornament" aria-hidden="true">✦</span>
+    </div>
+    <div class="guestbook-form glass-card reveal">
+      <div class="float-field">
+        <input type="text" id="gb-name" placeholder=" " autocomplete="name" aria-required="true" />
+        <label for="gb-name">Your Name</label>
+      </div>
+      <div class="float-field">
+        <textarea id="gb-message" rows="3" placeholder=" " aria-required="true"></textarea>
+        <label for="gb-message">Your Wish or Message</label>
+      </div>
+      <button class="submit-btn" id="gb-submit" aria-label="Submit your wish">Send Wish 💌</button>
+    </div>
+    <div id="wishes-list" class="wishes-list" aria-live="polite" aria-label="Guest wishes"></div>
+  </section>
+
+  <!-- ── LOCATION ── -->
+  <section id="location" class="section location-section">
+    <div class="section-header reveal">
+      <span class="section-ornament" aria-hidden="true">✦</span>
+      <h2 class="section-title">Venue</h2>
+      <span class="section-ornament" aria-hidden="true">✦</span>
+    </div>
+    <div class="location-card glass-card reveal">
+      <div class="location-pin-anim" aria-hidden="true">
+        <div class="loc-pin"></div>
+        <div class="loc-ripple r1"></div>
+        <div class="loc-ripple r2"></div>
+        <div class="loc-ripple r3"></div>
+      </div>
+      <h3 class="location-coming">Location Coming Soon</h3>
+      <p class="location-sub">Details will be shared closer to the date. Stay tuned!</p>
+      <div class="location-map-bg" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer id="footer" class="footer">
+    <div class="footer-geo" aria-hidden="true"></div>
+    <p class="footer-names">Maha Malik &amp; Shahzaib Malik</p>
+    <p class="footer-date">7 November 2026</p>
+    <p class="footer-bismillah arabic" lang="ar">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْم</p>
+  </footer>
+
+</main><!-- /main-content -->
+
+<script src="script.js"></script>
+</body>
+</html>
